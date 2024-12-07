@@ -1,0 +1,79 @@
+.location-page {
+  padding: 40px 20px;
+  max-width: 100%;
+  box-sizing: border-box;
+  background-color: #f4f7fb; /* Slightly lighter background */
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  color: #2A3663;
+  font-family: 'Merriweather', serif;
+}
+
+.instruction-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777; /* Lighter color for instructions */
+  margin-bottom: 40px;
+}
+
+.area-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.area-card {
+  background-color: #ffffff;
+  color: #333;
+  padding: 20px;
+  border-radius: 12px;
+  width: 260px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+}
+
+.area-card:hover {
+  transform: translateY(-5px);
+  background-color: #BCC2D0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More subtle shadow */
+}
+
+.area-card i {
+  margin-right: 10px;
+  color: #2A3663;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  .area-card {
+    width: 220px;
+  }
+
+  .page-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .area-card {
+    width: 150px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
