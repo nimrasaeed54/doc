@@ -1,79 +1,167 @@
+/* General styling for the page */
 .location-page {
-  padding: 40px 20px;
-  max-width: 100%;
-  box-sizing: border-box;
-  background-color: #f4f7fb; /* Slightly lighter background */
+  padding: 20px;
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fb;  /* Light gray background */
 }
 
-.page-title {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 2.2rem;
-  color: #2A3663;
-  font-family: 'Merriweather', serif;
-}
-
-.instruction-text {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #777; /* Lighter color for instructions */
+/* Progress bar container */
+.progress-bar-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   margin-bottom: 40px;
 }
 
+/* The progress bar itself */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  height: 10px;
+  background: #e1e1e1;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Progress step styles */
+.progress-step {
+  width: 33%;
+  height: 100%;
+  background-color: #b0bec5;
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 50px;
+}
+
+.progress-step.active {
+  background-color: #4caf50;
+  transform: scale(1.1);
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.progress-step.completed {
+  background-color: #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+}
+
+.progress-step::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active::after {
+  top: -10px;
+  background-color: #fff;
+  border: 2px solid #4caf50;
+}
+
+/* Labels below the progress bar */
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+}
+
+.label {
+  transition: color 0.3s ease;
+}
+
+.label.active {
+  color: #4caf50;
+}
+
+/* Location page title */
+.page-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Instruction text */
+.instruction-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #777;
+  font-style: italic;
+}
+
+/* Styling for area list */
 .area-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
   justify-content: center;
+  gap: 20px;
 }
 
+/* Styling for each area card */
 .area-card {
-  background-color: #ffffff;
-  color: #333;
+  background-color: #fff;
   padding: 20px;
-  border-radius: 12px;
-  width: 260px;
-  text-align: center;
+  margin: 10px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 230px;
+  text-align: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .area-card:hover {
+  background-color: #f3f3f3;
   transform: translateY(-5px);
-  background-color: #BCC2D0;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* More subtle shadow */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .area-card i {
-  margin-right: 10px;
-  color: #2A3663;
+  margin-bottom: 15px;
+  font-size: 35px;
+  color: #007bff;
 }
 
+.area-card span {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Loading message */
 .loading-message {
+  font-size: 16px;
+  color: #999;
   text-align: center;
-  font-size: 1.2rem;
-  color: #777;
+  font-style: italic;
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .area-card {
-    width: 220px;
+    width: 100%;
+    margin: 10px 0;
   }
-
+  
   .page-title {
-    font-size: 1.8rem;
+    font-size: 24px;
   }
-}
-
-@media (max-width: 576px) {
-  .area-card {
-    width: 150px;
-  }
-
-  .page-title {
-    font-size: 1.5rem;
+  
+  .instruction-text {
+    font-size: 14px;
   }
 }

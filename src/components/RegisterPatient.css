@@ -1,0 +1,134 @@
+.register-container {
+    max-width: 480px; 
+    width: 100%;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 12px; 
+    box-sizing: border-box; 
+    font-family: 'Arial', sans-serif;
+}
+
+.register-container h2 {
+    text-align: center;
+    color: #333333; 
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px; 
+}
+
+.register-form input {
+    width: 100%;
+    padding: 16px;
+    margin: 12px 0;
+    border: 1px solid #ddd; 
+    border-radius: 8px; 
+    font-size: 16px;
+    background-color: #f9f9f9; 
+    transition: border 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+.register-form input::placeholder {
+    color: #888; 
+}
+
+.register-form input:focus {
+    border-color: #2A3663; 
+    box-shadow: 0 0 8px rgba(98, 0, 234, 0.2);
+    outline: none;
+}
+
+.submit-btn {
+    all: unset; 
+    cursor: pointer; 
+    background-color: #2A3663;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    padding: 10px 6px;
+    font-size: 16px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #777;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.submit-btn:focus {
+    border: 2px solid #2A3663;
+    box-shadow: 0 0 10px #252f57;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.small-text {
+    font-size: 14px;
+}
+
+.redirect-btn {
+    width: 100%;
+    padding: 6px;
+    background-color: transparent;
+    color: #2A3663;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #2A3663;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-transform: uppercase;
+}
+
+.redirect-btn:hover {
+    background-color: #2A3663;
+    color: white;
+    border-color: #232e53;
+}
+
+.redirect-btn:focus {
+    border-color: #2A3663;
+    box-shadow: 0 0 10px #242e55;
+}
+
+
+@media (max-width: 768px) {
+    .register-container {
+        width: 80%;
+        padding: 30px;
+    }
+
+    .register-container h2 {
+        font-size: 24px;
+    }
+
+    .submit-btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .register-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .register-container h2 {
+        font-size: 20px;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+}

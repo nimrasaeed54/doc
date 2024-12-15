@@ -1,10 +1,12 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import doctorsData from '../data/doctorsData';
 import './DoctorsInAreaPage.css';
+import ProgressBar from './Progressbar';
 
 function DoctorsInAreaPage() {
-  const { area } = useParams(); // Get the area from the URL
+  const { area } = useParams(); // Retrieve the dynamic 'area' from the URL
   const [filteredDoctors, setFilteredDoctors] = useState([]);
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ function DoctorsInAreaPage() {
     navigate(`/calendar/${doctor.id}`, {
       state: {
         availableSlots: doctor.availableSlots, 
-        doctor: doctor, // Pass full doctor info
+        doctor: doctor,
       },
     });
   };
@@ -27,6 +29,7 @@ function DoctorsInAreaPage() {
   return (
     <div className="doctor-area-page">
       <h2 className="page-title">Available Doctors in {area}</h2>
+      <ProgressBar steps={["Location", "Doctors", "Calendar", "Appointment"]} currentStep={2} />
       <div className="doctor-list">
         {filteredDoctors.length === 0 ? (
           <div className="no-doctors">No doctors available in this area.</div>
@@ -44,6 +47,7 @@ function DoctorsInAreaPage() {
                   className="doctor-picture"
                 />
               </div>
+
               <div className="doctor-details">
                 <h5 className="doctor-name">{doctor.name}</h5>
                 <p className="doctor-specialty">{doctor.specialty}</p>

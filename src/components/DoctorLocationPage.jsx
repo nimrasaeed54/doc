@@ -2,17 +2,22 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import doctorsData from '../data/doctorsData';
 import './DoctorLocationPage.css';
+import ProgressBar from './Progressbar';
 
 function DoctorLocationPage() {
   const navigate = useNavigate();
 
   const handleDoctorSelection = (doctor) => {
     navigate(`/calendar/${doctor.id}`, { state: { availableSlots: doctor.availableSlots } });
+
+
+
   };
 
   return (
     <div className="doctor-location-page">
       <h2 className="page-title">Find Your Doctor</h2>
+      <ProgressBar steps={["Location", "Doctors", "Calendar", "Appointment"]} currentStep={2} />
       <div className="doctor-grid">
         {doctorsData.map((doctor) => (
           <div key={doctor.id} className="doctor-tile">

@@ -1,0 +1,116 @@
+:root {
+  --primary-color: #2A3663; 
+  --step-active: #1F294D; 
+  --progress-bg: #DADDE1; 
+  --progress-bar-bg: #A1A1A1; 
+  --step-bg: #FFFFFF; 
+}
+
+div .progress-bar-container {
+  width: 100%; 
+  height: 20%;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0;
+  position: relative;
+  background-color: #F4F5F9;
+
+}
+
+.progress-bar-wrapper {
+  position: relative;
+}
+
+.progress {
+  height: 5px; 
+  background-color: var(--progress-bar-bg); 
+  border-radius: 10px;
+  position: absolute;
+  top: 50%; 
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+div .progress-bar {
+  height: 5px; 
+  background-color: var(--primary-color);
+
+  border-radius: 10px;
+  transition: width 0.4s ease-in-out;
+  position: absolute;
+  top: 50%; 
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  margin-top: -15px; 
+  margin-bottom: 20px; 
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  z-index: 3;
+ 
+
+}
+
+.step-circle {
+  width: 50px; 
+  height: 50px;
+  background-color: var(--step-bg);
+  border: 2px solid var(--progress-bg);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px; 
+  font-weight: bold;
+  color: var(--progress-bg);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 4; 
+}
+
+
+.step.completed .step-circle {
+  background-color: var(--step-active);
+  border-color: var(--step-active);
+  color: #FFF;
+}
+
+
+.step.active .step-circle {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+
+@media (max-width: 768px) {
+  .step-circle {
+    width: 35px; 
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .progress {
+    height: 3px; 
+  }
+
+  .progress-bar {
+    height: 3px;
+  }
+
+  .progress-bar-wrapper {
+    margin-top: -10px;
+  }
+}

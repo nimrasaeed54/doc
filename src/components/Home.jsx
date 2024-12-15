@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
@@ -14,6 +15,7 @@ function Home() {
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
+  // Filter doctors based on the location
   const filteredDoctors = useMemo(() => {
     return doctorsData.filter((doctor) =>
       doctor.location.toLowerCase().includes(filter.toLowerCase())
@@ -55,6 +57,7 @@ function Home() {
     });
   };
 
+  // Find the next available date from the doctor's available slots
   const findNextAvailableDate = (availableSlots) => {
     const todayDate = new Date().toISOString().split('T')[0];
     const availableDates = Object.keys(availableSlots).filter((date) => date > todayDate);
@@ -62,6 +65,7 @@ function Home() {
     return availableDates[0];
   };
 
+  // Format date in a readable format
   const formatDate = (date) => {
     const d = new Date(date);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -69,6 +73,7 @@ function Home() {
   };
 
   return (
+    <div className='home'>
     <div className="container mt-3">
       <h2 className="text-center mb-3">Find Your Doctor</h2>
       <input
@@ -92,6 +97,7 @@ function Home() {
                     src={doctor.picture}
                     className="card-img-top rounded-circle"
                     alt={doctor.name}
+                    style={{ width: '120px', height: '120px', objectFit: 'cover' }}
                   />
                 </div>
                 <div className="card-body d-flex flex-column">
@@ -105,11 +111,11 @@ function Home() {
                       <h6>
                         Next Available Slot: {formatDate(nextAvailableDate)}
                       </h6>
-                      <div className="d-flex flex-wrap">
+                      <div className="slots d-flex flex-wrap">
                         {nextAvailableSlots.map((time) => (
                           <button
                             key={time}
-                            className={`btn m-1 ${selectedTime === time ? 'btn-primary' : 'btn-outline-primary'} `}
+                            className={`custom-btn  ${selectedTime === time ? 'btn-primary' : 'btn-outline-primary'} `}
                             onClick={() => handleSelectTime(doctor, nextAvailableDate, time)}
                           >
                             {time}
@@ -123,10 +129,9 @@ function Home() {
                     </div>
                   )}
 
-                 
                   <button
                     onClick={() => handleAppointment(doctor)}
-                    className="btn btn-primary w-100 mt-auto"
+                    className="appointment custom-btn btn-primary w-100 mt-auto"
                   >
                     Book Appointment
                   </button>
@@ -157,19 +162,20 @@ function Home() {
         </Modal.Body>
         <Modal.Footer>
           <button
-            className="btn btn-secondary"
+            className="custom-btn btn-secondary"
             onClick={() => setShowModal(false)}
           >
             Close
           </button>
-          <button
-            className="btn btn-primary"
-            onClick={handleBookSchedule}
-          >
-            Confirm Appointment
-          </button>
+          <div className="appointment-btn-container">
+  <button className="custom-btn btn-primary" onClick={handleBookSchedule}>
+    Confirm Appointment
+  </button>
+</div>
+
         </Modal.Footer>
       </Modal>
+    </div>
     </div>
   );
 }

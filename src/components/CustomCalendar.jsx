@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './CustomCalendar.css';
 
-function CustomCalendar({ availableSlots, onConfirm }) {
+import './CustomCalendar.css';
+import React, { useState } from 'react';
+
+function CustomCalendar({ availableSlots, onConfirm, view = 'monthly' }) {
+  const getStartOfWeek = () => {
+    const today = new Date();
+    const currentDay = today.getDay();
+    const diff = currentDay === 0 ? -6 : 1 - currentDay; 
+    today.setDate(today.getDate() + diff);
+    return today;
+  };
+
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentWeekStart, setCurrentWeekStart] = useState(getStartOfWeek());
   const [errorMessage, setErrorMessage] = useState('');
+ 
 
-  const navigate = useNavigate();
+
 
   const handleDayClick = (date) => {
     if (checkSlotAvailability(date)) {
@@ -19,6 +29,11 @@ function CustomCalendar({ availableSlots, onConfirm }) {
     }
   };
 
+  const handleDateSelection = (date) => {
+    
+    onConfirm(date, selectedTime); 
+  };
+  
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
     onConfirm(selectedDate, time);
@@ -63,6 +78,22 @@ function CustomCalendar({ availableSlots, onConfirm }) {
     return daysArray;
   };
 
+  const generateDaysForWeek = () => {
+    const daysArray = [];
+    for (let i = 0; i < 7; i++) {
+      const currentDate = new Date(currentWeekStart);
+      currentDate.setDate(currentWeekStart.getDate() + i);
+      const today = new Date();
+
+      if (currentDate < today) {
+        daysArray.push({ day: currentDate.getDate(), isPast: true });
+      } else {
+        daysArray.push({ day: currentDate.getDate(), isPast: false });
+      }
+    }
+    return daysArray;
+  };
+
   const handleMonthChange = (direction) => {
     let newMonth = currentMonth + direction;
     if (newMonth < 0) {
@@ -75,6 +106,12 @@ function CustomCalendar({ availableSlots, onConfirm }) {
     setCurrentMonth(newMonth);
   };
 
+  const handleWeekChange = (direction) => {
+    const newStartOfWeek = new Date(currentWeekStart);
+    newStartOfWeek.setDate(currentWeekStart.getDate() + direction * 7); // Adjust by 7 days forward or backward
+    setCurrentWeekStart(newStartOfWeek);
+  };
+
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
@@ -83,16 +120,16 @@ function CustomCalendar({ availableSlots, onConfirm }) {
         <div className="calendar-header d-flex justify-content-between align-items-center">
           <button
             className="btn btn-outline-primary"
-            onClick={() => handleMonthChange(-1)}
+            onClick={() => handleWeekChange(-1)} // Go to the previous week
           >
-            &lt;
+            Previous
           </button>
           <h2>{`${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} ${currentYear}`}</h2>
           <button
             className="btn btn-outline-primary"
-            onClick={() => handleMonthChange(1)}
+            onClick={() => handleWeekChange(1)} // Go to the next week
           >
-            &gt;
+            Next
           </button>
         </div>
 
@@ -105,32 +142,58 @@ function CustomCalendar({ availableSlots, onConfirm }) {
         </div>
 
         <div className="calendar-grid">
-          {generateDaysForMonth().map((day, index) => {
-            const date = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day?.day).padStart(2, '0')}`;
-            const isSlotAvailable = checkSlotAvailability(date);
-
-            return (
-              day ? (
-                <div
-                  key={index}
-                  className={`calendar-day ${selectedDate === date ? 'bg-primary text-white border-primary' : ''} 
-                  ${isSlotAvailable ? 'border-success' : 'border-danger'} 
-                  ${day?.isPast ? 'disabled' : ''}`} 
-                  onClick={() => !day?.isPast && day && handleDayClick(date)}
-                >
-                  <div className="calendar-day-number">{day?.day || ''}</div>
-                  {isSlotAvailable && !day?.isPast && (
-                    <div className="slot-dot green-dot"></div>
-                  )}
-                  {!isSlotAvailable && !day?.isPast && (
-                    <div className="slot-dot red-dot"></div>
-                  )}
-                </div>
-              ) : (
-                <div key={index} className="calendar-day empty-block"></div>
-              )
-            );
-          })}
+          {view === 'monthly'
+            ? generateDaysForMonth().map((day, index) => {
+                const date = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day?.day).padStart(2, '0')}`;
+                const isSlotAvailable = checkSlotAvailability(date);
+                return (
+                  day ? (
+                    <div
+                      key={index}
+                      className={`calendar-day ${selectedDate === date ? 'bg-primary text-white border-primary' : ''} 
+                      ${isSlotAvailable ? 'border-success' : 'border-danger'} 
+                      ${day?.isPast ? 'disabled' : ''}`} 
+                      onClick={() => !day?.isPast && day && handleDayClick(date)}
+                    >
+                      <div className="calendar-day-number">{day?.day || ''}</div>
+                      {isSlotAvailable && !day?.isPast && (
+                        <div className="slot-dot green-dot"></div>
+                      )}
+                      {!isSlotAvailable && !day?.isPast && (
+                        <div className="slot-dot red-dot"></div>
+                      )}
+                    </div>
+                  ) : (
+                    <div key={index} className="calendar-day empty-block"></div>
+                  )
+                );
+              })
+            : generateDaysForWeek().map((day, index) => {
+                const date = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day?.day).padStart(2, '0')}`;
+                const isSlotAvailable = checkSlotAvailability(date);
+                return (
+                  day ? (
+                    <div
+                      key={index}
+                      className={`calendar-day ${selectedDate === date ? 'bg-primary text-white border-primary' : ''} 
+                      ${isSlotAvailable ? 'border-success' : 'border-danger'} 
+                      ${day?.isPast ? 'disabled' : ''}`} 
+                      onClick={() => !day?.isPast && day && handleDayClick(date)}
+                    >
+                      <div className="calendar-day-number">{day?.day || ''}</div>
+                      {isSlotAvailable && !day?.isPast && (
+                        <div className="slot-dot green-dot"></div>
+                      )}
+                      {!isSlotAvailable && !day?.isPast && (
+                        <div className="slot-dot red-dot"></div>
+                      )}
+                    </div>
+                  ) : (
+                    <div key={index} className="calendar-day empty-block"></div>
+                  )
+                );
+              })
+          }
         </div>
       </div>
 

@@ -1,89 +1,90 @@
 .provider-page {
   padding: 50px 20px;
-  background-color: #f7f9fc; /* Subtle light background */
+  background-color: #fafafa;
+  font-family: 'Arial', sans-serif;
 }
 
 .page-title {
-  font-size: 2.5rem;
-  font-family: 'Merriweather', serif;
-  color: #2A3663;
-  font-weight: 700;
+  font-size: 3rem;
+  color: #333;
   text-align: center;
-  margin-bottom: 60px;
-  letter-spacing: 1px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 .doctor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
   gap: 40px;
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 auto;
 }
 
-.doctor-card {
-  background-color: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+.doctor-item {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  position: relative;
   overflow: hidden;
 }
 
-.doctor-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+.doctor-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f4;
 }
 
 .doctor-img {
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-bottom: 2px solid #F1F1F1;
+  border-radius: 10px;
 }
 
 .doctor-info {
-  padding: 25px;
-  text-align: left;
-  background-color: #fff;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .doctor-name {
   font-size: 1.8rem;
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
-  color: #2A3663;
-  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
 }
 
 .doctor-specialty {
   font-size: 1.2rem;
-  color: #6C757D;
-  margin-bottom: 20px;
+  color: #777;
+  margin-bottom: 15px;
 }
 
 .view-location-btn {
   background-color: #2A3663;
-  color: #F1F1F1;
-  padding: 12px 25px;
-  border-radius: 30px;
+  color: white;
+  padding: 10px 20px;
   font-size: 1.1rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  text-align: center;
+  border-radius: 30px;
   border: none;
+  text-transform: uppercase;
   cursor: pointer;
-  display: inline-block;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .view-location-btn:hover {
-  background-color: #1C1F3D;
   transform: scale(1.05);
+}
+
+.view-location-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(42, 54, 99, 0.6); 
 }
 
 @media (max-width: 768px) {
   .doctor-grid {
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
   }
 
   .doctor-name {
@@ -96,6 +97,20 @@
 
   .view-location-btn {
     font-size: 1rem;
-    padding: 10px 20px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 2.5rem;  
+  }
+
+  .doctor-name {
+    font-size: 1.4rem;  
+  }
+
+  .doctor-specialty {
+    font-size: 1rem; 
   }
 }

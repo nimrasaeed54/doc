@@ -83,6 +83,7 @@
   border-radius: 4px;
   position: relative;
   border: 1px solid transparent;
+ 
 }
 
 .calendar-day:hover {
@@ -107,16 +108,17 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  
 }
 
 .green-dot {
   background-color: #28a745;
-  border-color: #28a745;
+
 }
 
 .red-dot {
   background-color: #dc3545;
-  border-color: #dc3545;
+
 }
 
 .empty-block {
