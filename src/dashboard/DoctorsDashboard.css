@@ -1,0 +1,104 @@
+
+ .page-title {
+    font-size: 36px;
+    font-weight: 700;
+    color:#765CA6;
+    margin-top: 70px;
+    text-align: left;
+    margin-left: 280px;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+  }
+  
+ .doctors-list {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: row;
+    margin-left: 230px;
+    padding: 40px;
+    width: calc(100% - 250px); 
+    background: linear-gradient(135deg, #f2f4f7, #d9e2ec) !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+
+  .doctors-list .doctor-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 30%; 
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    height: 350px; 
+    align-items: center; 
+  }
+  
+ 
+  .doctors-list .doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  }
+  
+
+  .doctors-list .doctor-image {
+    width: 70%;  
+    height: auto; 
+    object-fit: cover;
+    border-bottom: 2px solid #e0e0e0;
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+  }
+  
+
+  .doctors-list .doctor-card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 15px;
+    color: #333;
+  }
+  
+  .doctors-list .doctor-card p {
+    font-size: 16px;
+    margin: 0 15px 10px;
+    color: #666;
+  }
+  
+  .doctors-list .doctor-card p strong {
+    color: #007bff;
+  }
+
+  .doctors-list .doctor-card p:last-of-type {
+    font-style: italic;
+    color: #777;
+  }
+  
+
+  @media (max-width: 1024px) {
+    .doctors-list .doctor-card {
+      width: 45%; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .doctors-list  .doctor-card {
+      width: 100%; 
+    }
+  
+    .doctors-list {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+  

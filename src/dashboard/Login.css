@@ -1,0 +1,204 @@
+button:focus,
+button,
+button:active {
+  outline: none; 
+  all: unset;
+}
+
+.login-page .tabs button {
+  background-color: transparent;
+}
+
+.login-page .tabs button:focus,
+.login-page .tabs button:active {
+  outline: none !important; 
+  border: 2px solid white; 
+  background-color:#70B6C1; 
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family:'Poppins', Times, serif;
+  flex-direction: column; 
+  padding-bottom: 80px; 
+}
+
+.login-page .card-container {
+  display: flex;
+  position: relative;
+  transition: all 0.5s ease;
+  width: 80%;
+  height: 80%;
+  max-width: 1200px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-part {
+  flex: 1;
+  background: linear-gradient(135deg, #765CA6, #765CA6, #70B6C1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px 0 0 10px;
+  transition: transform 0.5s ease;
+}
+
+.welcome-part h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.welcome-part p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.login-page .tabs {
+  display: flex;
+  gap: 20px;
+  
+}
+
+.login-page .tab {
+  padding: 10px 20px;
+  background-color: #765CA6;
+
+  border: 2px solid #fff;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.login-page .form-part {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  transition: transform 0.5s ease;
+}
+
+.form-part h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-part form input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.login-page .form-part form button {
+  padding: 10px;
+  background-color:#765CA6;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.login-page .form-part form button:hover {
+  background-color: #70B6C1;
+}
+
+.form-part form p {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.form-part form a {
+
+  color:#765CA6 ;
+}
+
+.card-container.clinic-active .welcome-part {
+  transform: translateX(100%);
+}
+
+.card-container.clinic-active .form-part {
+  transform: translateX(-100%);
+}
+
+.login-page .footer {
+  width: 100%;
+  color: #555;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10; 
+}
+
+.login-page .footer p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #555;
+}
+
+.login-page .footer .social-links {
+  margin-top: 10px;
+}
+
+.login-page .footer .social-links a {
+  color: #555;
+  margin: 0 10px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-page .footer .social-links a:hover {
+  color: #70B6C1; 
+}
+
+.logo {
+  position: absolute;
+  top: 20px; 
+  left: 20px;
+  height: 40px; 
+  width: auto; 
+  z-index: 10; 
+}
+
+.form-part form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-part form input {
+  padding: 7px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-part form button {
+  padding: 10px;
+  background-color:#765CA6;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
